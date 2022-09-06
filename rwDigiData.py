@@ -13,6 +13,7 @@ laboratoriesID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030']
 parameters= ['temp','hum']
 count = 0
 auxIndex = 0
+auxData = "200/500"
 
 while(True):
     xbee_message = xbee.read_data()
