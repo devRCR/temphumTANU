@@ -18,7 +18,7 @@ while(True):
     xbee_message = xbee.read_data()
 
     # Cada 5 minutos calculamos el promedio y desviación estandar de los datos almacenados
-    if (time.time()-prevTime > 300):
+    if (time.time()-prevTime > 30):
         prevTime = time.time() # actualizamos el tiempo previo
         for n in remoteNodes:
             dTemp = {'Temp': locals()['temp'+n]}
@@ -42,7 +42,7 @@ while(True):
             locals()['hum'+n] = []
 
             # Guardamos los datos en ficheros tipo txt 
-            with open('/home/lde/Share/'+n + '/'+filename+'.txt','a') as f:
+            with open('/home/lde/Share/'+ n + str(datetime.now().month) + '/'+filename+'.txt','a') as f:
                 f.write(str(mean_dfTemp[0])+","+str(std_dfTemp[0])+","+str(len(dfTemp))+","+str(mean_dfHum[0])+","+str(std_dfHum[0])+","+str(len(dfHum))+","+datetime.now().strftime("%H:%M:%S")+"\r\n")        
     else:
         if xbee_message != None:
@@ -76,8 +76,8 @@ while(True):
                 print ('Invalid literal for int() with base 10: '+dataSensor[x])
             
             # creamos las carpetas para cada Nodo           
-            if not os.path.exists('/home/lde/Share/'+ remoteID):
-                os.mkdir('/home/lde/Share/'+ remoteID)
+            if not os.path.exists('/home/lde/Share/'+ remoteID + '/' + str(datetime.now().month)):
+                os.mkdir('/home/lde/Share/'+ remoteID + '/' + str(datetime.now().month))
                 #print("Directory ", remoteID, " created")
             else:
                 None
