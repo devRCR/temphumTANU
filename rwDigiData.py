@@ -63,25 +63,29 @@ while(True):
                     auxIndex = remoteNodes.index(i) + 1
                 else:
                     count = 0
+            
+            print("auxData = ", auxData)
                     
             #print(xbee_message.data)
             try:
                 payload = xbee_message.data.decode("utf8")
                 
             except UnicodeDecodeError:
-                print ('utf-8 codec can not decode data')
+                payload = "666/666"
+                print ('utf-8 codec can not decode data')           
             
-            print(payload)
-            print(type(payload))
-                
             dataSensor = payload.split("/")
-            
+             
+            print(dataSensor)
+             
             try:
                 for x in range(len(dataSensor)):
                     dataSensor[x] = int(dataSensor[x])/10
                     locals()[parameters[x]+remoteID].append(dataSensor[x])
             except ValueError:
                 print ('Invalid literal for int() with base 10: '+dataSensor[x])
+            
+            auxData = dataSensor
             
             # creamos las carpetas para cada Nodo           
             if not os.path.exists('/home/lde/Share/'+remoteID+'/'+str(datetime.now().month)):
