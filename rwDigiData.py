@@ -12,8 +12,10 @@ laboratoriesID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030']
 #[Lab18,Lab19,Lab31] 
 parameters= ['temp','hum']
 count = 0
+# Creando variables Auxiliares
 auxIndex = 0
-auxData = "200/500"
+auxPayload = "200/500"
+auxData = [20.0,50.0]
 
 while(True):
     xbee_message = xbee.read_data()
@@ -64,21 +66,19 @@ while(True):
                     auxIndex = remoteNodes.index(i) + 1
                 else:
                     count = 0
-            
-            print("auxData = ", auxData)
                     
-            #print(xbee_message.data)
             try:
-                payload = xbee_message.data.decode("utf8")
-                
+                payload = xbee_message.data.decode("utf8")   
             except UnicodeDecodeError:
-                payload = "666/666"
+                payload = auxData
                 print ('utf-8 codec can not decode data')           
             
-            dataSensor = payload.split("/")
-             
-            print(dataSensor)
-             
+            try: 
+                dataSensor = payload.split("/")
+            except :
+                print('An error has been caught')
+                dataSensor = auxData    
+                     
             try:
                 for x in range(len(dataSensor)):
                     dataSensor[x] = int(dataSensor[x])/10
@@ -86,6 +86,8 @@ while(True):
             except ValueError:
                 print ('Invalid literal for int() with base 10: '+dataSensor[x])
             
+            # Actualizando el valor de las variables auxiliares en caso de error
+            auxPayload = payload
             auxData = dataSensor
             
             # creamos las carpetas para cada Nodo           
