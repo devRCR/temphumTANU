@@ -42,7 +42,7 @@ while(True):
             locals()['hum'+n] = []
 
             # Guardamos los datos en ficheros tipo txt 
-            with open('/home/lde/Share/'+ n + str(datetime.now().month) + '/'+filename+'.txt','a') as f:
+            with open('/home/lde/Share/'+n+'/'+str(datetime.now().month)+'/'+filename+'.txt','a') as f:
                 f.write(str(mean_dfTemp[0])+","+str(std_dfTemp[0])+","+str(len(dfTemp))+","+str(mean_dfHum[0])+","+str(std_dfHum[0])+","+str(len(dfHum))+","+datetime.now().strftime("%H:%M:%S")+"\r\n")        
     else:
         if xbee_message != None:
@@ -64,8 +64,15 @@ while(True):
                 else:
                     count = 0
                     
-            print(xbee_message.data)
-            payload = xbee_message.data.decode("utf8")
+            #print(xbee_message.data)
+            try:
+                payload = xbee_message.data.decode("utf8")
+                
+            except UnicodeDecodeError:
+                print ('utf-8 codec can not decode data')
+                print(payload)
+                print(type(payload))
+                
             dataSensor = payload.split("/")
             
             try:
@@ -76,8 +83,8 @@ while(True):
                 print ('Invalid literal for int() with base 10: '+dataSensor[x])
             
             # creamos las carpetas para cada Nodo           
-            if not os.path.exists('/home/lde/Share/'+ remoteID + '/' + str(datetime.now().month)):
-                os.mkdir('/home/lde/Share/'+ remoteID + '/' + str(datetime.now().month))
+            if not os.path.exists('/home/lde/Share/'+remoteID+'/'+str(datetime.now().month)):
+                os.mkdir('/home/lde/Share/'+remoteID+'/'+str(datetime.now().month))
                 #print("Directory ", remoteID, " created")
             else:
                 None
