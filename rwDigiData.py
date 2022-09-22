@@ -91,12 +91,15 @@ while(True):
             auxData = dataSensor
             
             # creamos las carpetas para cada Nodo           
+            if not os.path.exists('/home/lde/Share/'+remoteID):
+                os.mkdir('/home/lde/Share/'+remoteID) # Creamos la carpeta para un nodo nuevo
+            else:
+                None
+            # creamos la carpeta del mes de medición, dentro de la carpeta de cada Nodo          
             if not os.path.exists('/home/lde/Share/'+remoteID+'/'+str(datetime.now().month)):
                 os.mkdir('/home/lde/Share/'+remoteID+'/'+str(datetime.now().month))
                 #print("Directory ", remoteID, " created")
             else:
                 None
-            
-
 
         
