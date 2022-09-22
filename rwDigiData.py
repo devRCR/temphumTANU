@@ -66,10 +66,10 @@ while(True):
                     auxIndex = remoteNodes.index(i) + 1
                 else:
                     count = 0
-                    
+            
+            print(str(xbee_message.data) + ' ' + remoteID)        
             try:
-                payload = xbee_message.data.decode("utf8")   
-                print(str(xbee_message.data) + ' ' + remoteID)
+                payload = xbee_message.data.decode("utf8")      
             except UnicodeDecodeError:
                 #payload = auxPayload
                 print ('utf-8 codec can not decode data'+remoteID)           
