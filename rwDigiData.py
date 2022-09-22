@@ -70,14 +70,14 @@ while(True):
             try:
                 payload = xbee_message.data.decode("utf8")   
             except UnicodeDecodeError:
-                payload = auxPayload
+                #payload = auxPayload
                 print ('utf-8 codec can not decode data')           
             #print(payload)
             try: 
                 dataSensor = payload.split("/")
             except :
                 print('An error has been caught')
-                dataSensor = auxData    
+                #dataSensor = auxData    
                      
             try:
                 for x in range(len(dataSensor)):
