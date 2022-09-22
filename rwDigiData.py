@@ -72,7 +72,7 @@ while(True):
             except UnicodeDecodeError:
                 payload = auxData
                 print ('utf-8 codec can not decode data')           
-            print(payload)
+            #print(payload)
             try: 
                 dataSensor = payload.split("/")
             except :
