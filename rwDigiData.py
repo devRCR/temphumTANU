@@ -49,6 +49,8 @@ while(True):
                 f.write(str(mean_dfTemp[0])+","+str(std_dfTemp[0])+","+str(len(dfTemp))+","+str(mean_dfHum[0])+","+str(std_dfHum[0])+","+str(len(dfHum))+","+datetime.now().strftime("%H:%M:%S")+"\r\n")        
     else:
         if xbee_message != None:
+            remoteNodeIdentifier = xbee_message.remote_device.get_device_by_node_id()
+            print(remoteNodeIdentifier)
             remoteID = str(xbee_message.remote_device.get_64bit_addr())
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
