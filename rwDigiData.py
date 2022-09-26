@@ -71,7 +71,7 @@ while(True):
                    
             try:
                 payload = xbee_message.data.decode("utf8")  
-                print(payload + remoteID)    
+                print(payload+' '+remoteID)    
             except UnicodeDecodeError:
                 #payload = auxPayload
                 print ('utf-8 codec can not decode data'+remoteID)           
