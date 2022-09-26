@@ -50,7 +50,7 @@ while(True):
     else:
         if xbee_message != None:
             remoteNodeIdentifier = xbee_message.remote_device.get_node_id()
-            print(remoteNodeIdentifier)
+            print(str(remoteNodeIdentifier))
             remoteID = str(xbee_message.remote_device.get_64bit_addr())
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
