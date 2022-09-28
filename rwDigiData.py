@@ -36,7 +36,7 @@ while(True):
             std_dfHum = dfHum.std().round(2)
                        
             timestamp = time.time()
-            #print(n, mean_dfTemp[0],std_dfTemp[0],len(dfTemp),mean_dfHum[0],std_dfHum[0],len(dfHum),datetime.now().strftime("%d%m%Y %H:%M:%S"))
+            print(n, mean_dfTemp[0],std_dfTemp[0],len(dfTemp),mean_dfHum[0],std_dfHum[0],len(dfHum),datetime.now().strftime("%d%m%Y %H:%M:%S"))
 
             filename = datetime.now().strftime("%d%m%Y")
 
@@ -50,7 +50,7 @@ while(True):
     else:
         if xbee_message != None:
             remoteNodeIdentifier = xbee_message.remote_device.get_node_id()
-            print(str(remoteNodeIdentifier))
+            #print(str(remoteNodeIdentifier))
             remoteID = str(xbee_message.remote_device.get_64bit_addr())
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
@@ -71,7 +71,7 @@ while(True):
                    
             try:
                 payload = xbee_message.data.decode("utf8")  
-                print(payload+' '+remoteID)    
+                #print(payload+' '+remoteID)    
             except UnicodeDecodeError:
                 #payload = auxPayload
                 print ('utf-8 codec can not decode data'+remoteID)           
