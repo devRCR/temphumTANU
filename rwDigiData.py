@@ -54,7 +54,7 @@ while(True):
             remoteID = str(xbee_message.remote_device.get_64bit_addr())
             
             for n in labID:
-                if remoteID==labID[n]:
+                if remoteID==n:
                     print("El dato viene del %s",labName[n])
                                
             if len(remoteNodes) == 0:
