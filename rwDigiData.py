@@ -5,8 +5,8 @@ from datetime import datetime
 from digi.xbee.devices import XBeeDevice
 
 remoteNodes = []
-labID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030']
-labName = ['Lab18','Lab19','Lab31'] 
+labID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030','0013A200414E600D']
+labName = ['Lab18','Lab19','Lab31','Lab29'] 
 parameters= ['temp','hum']
 count = 0
 # Creando variables Auxiliares
