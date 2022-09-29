@@ -55,7 +55,7 @@ while(True):
             
             for n in labID:
                 if remoteID==n:
-                    print("El dato viene del %s",labName[n])
+                    print("El dato viene del %s",n)
                                
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
