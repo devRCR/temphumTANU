@@ -14,6 +14,8 @@ auxIndex = 0
 auxPayload = "200/500"
 auxData = [20.0,50.0]
 
+time.sleep(10)
+
 xbee = XBeeDevice("/dev/ttyUSB0",9600)
 xbee.open()
 prevTime = time.time()
