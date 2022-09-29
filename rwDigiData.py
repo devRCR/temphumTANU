@@ -55,7 +55,7 @@ while(True):
             
             for n in labID:
                 if remoteID==n:
-                    print("El nodo remoto es %s y corresponde al lab %s" %(remoteID,labName[labID.index(n)]))
+                    print("El nodo remoto es %s y corresponde al %s" %(remoteID,labName[labID.index(n)]))
                                
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
