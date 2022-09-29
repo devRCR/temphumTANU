@@ -4,18 +4,19 @@ import numpy as np
 from datetime import datetime
 from digi.xbee.devices import XBeeDevice
 
-xbee = XBeeDevice("/dev/ttyUSB0",9600)
-xbee.open()
-prevTime = time.time()
 remoteNodes = []
-laboratoriesID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030']
-#[Lab18,Lab19,Lab31] 
+labID = ['0013A200414E5F9E','0013A200414E5FA7','0013A200414E6030']
+labName = ['Lab18','Lab19','Lab31'] 
 parameters= ['temp','hum']
 count = 0
 # Creando variables Auxiliares
 auxIndex = 0
 auxPayload = "200/500"
 auxData = [20.0,50.0]
+
+xbee = XBeeDevice("/dev/ttyUSB0",9600)
+xbee.open()
+prevTime = time.time()
 
 while(True):
     xbee_message = xbee.read_data()
@@ -50,9 +51,12 @@ while(True):
         remoteNodes = []    
     else:
         if xbee_message != None:
-            remoteNodeIdentifier = xbee_message.remote_device(node_id).get_node_id()
-            print(str(remoteNodeIdentifier))
             remoteID = str(xbee_message.remote_device.get_64bit_addr())
+            
+            for n in labID:
+                if remoteID==labID[n]:
+                    print("El dato viene del %s",labName[n])
+                               
             if len(remoteNodes) == 0:
                 remoteNodes.append(remoteID)
                 locals()['temp'+remoteID] = []
@@ -61,15 +65,14 @@ while(True):
                 for i in remoteNodes:
                     if (remoteID  == i):
                         count = count + 1
-                        auxIndex = remoteNodes.index(i)
+                        #auxIndex = remoteNodes.index(i)
                 if (count == 0):
                     remoteNodes.append(remoteID)
                     locals()['temp'+remoteID] = []
                     locals()['hum'+remoteID] = []
-                    auxIndex = remoteNodes.index(i) + 1
+                    #auxIndex = remoteNodes.index(i) + 1
                 else:
                     count = 0
-                   
             try:
                 payload = xbee_message.data.decode("utf8")  
                 #print(payload+' '+remoteID)    
@@ -93,6 +96,8 @@ while(True):
             # Actualizando el valor de las variables auxiliares en caso de error
             auxPayload = payload
             auxData = dataSensor
+            
+            
             
             # creamos las carpetas para cada Nodo           
             if not os.path.exists('/home/lde/Share/'+remoteID):
