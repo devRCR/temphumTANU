@@ -48,7 +48,7 @@ while(True):
             locals()['hum'+n] = []
 
             # Guardamos los datos en ficheros tipo txt 
-            with open('/home/lde/Share/'+n+'/'+str(datetime.now().month)+'/'+filename+'.txt','a') as f:
+            with open('/home/lde/Share/'+n+'/'+str(datetime.now().year)+'/'+str(datetime.now().month)+'/'+filename+'.txt','a') as f:
                 f.write(str(mean_dfTemp[0])+","+str(std_dfTemp[0])+","+str(len(dfTemp))+","+str(mean_dfHum[0])+","+str(std_dfHum[0])+","+str(len(dfHum))+","+datetime.now().strftime("%H:%M:%S")+"\r\n")    
         remoteNodes = []    
     else:
