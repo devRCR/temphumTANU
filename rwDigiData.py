@@ -105,7 +105,12 @@ while(True):
                 os.mkdir('/home/lde/Share/'+remoteID) # Creamos la carpeta para un nodo nuevo
             else:
                 None
-            # creamos la carpeta del mes de medición, dentro de la carpeta de cada Nodo          
+            # creamos la carpeta del año de medición, dentro de la carpeta de cada Nodo          
+            if not os.path.exists('/home/lde/Share/'+remoteID+'/'+str(datetime.now().year)):
+                os.mkdir('/home/lde/Share/'+remoteID+'/'+str(datetime.now().year))
+            else:
+                None
+            # creamos la carpeta del mes de medición, dentro de la carpeta del año        
             if not os.path.exists('/home/lde/Share/'+remoteID+'/'+str(datetime.now().year)+'/'+str(datetime.now().month)):
                 os.mkdir('/home/lde/Share/'+remoteID+'/'+str(datetime.now().year)+'/'+str(datetime.now().month))
                 #print("Directory ", remoteID, " created")
