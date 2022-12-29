@@ -24,7 +24,7 @@ while(True):
     xbee_message = xbee.read_data()
 
     # Cada 5 minutos calculamos el promedio y desviación estandar de los datos almacenados
-    if (time.time()-prevTime > 300):
+    if (time.time()-prevTime > 10):
         prevTime = time.time() # actualizamos el tiempo previo
         for n in remoteNodes:
             dTemp = {'Temp': locals()['temp'+n]}
